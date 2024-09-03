@@ -4,11 +4,11 @@ const secretKey='adminSecret';
 exports.getAdminlogin=async(req,res)=>{
     res.render('adminlogin');
 }
-console.log('Start of postAdminlogin function');
+
 exports.postAdminlogin = async (req, res) => {
     const { email, password } = req.body;
     try {
-        console.log('Inside try block');
+      
 
         // Find admin by email
         const admin = await Admin.findOne({ email });

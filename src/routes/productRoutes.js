@@ -1,24 +1,27 @@
 const express = require('express');
 const router = express.Router();
 const productController = require('../controller/productController');
+const adminController=require("../controller/adminController");
+const {verifyadminToken} = require("../middleware/adminTokenVerify");
+
+
 const upload=require("../middleware/upload");
 
 // Route to display the add product form
-router.get('/addProduct', productController.getAddProduct);
+router.get('/addProduct',verifyadminToken, productController.getAddProduct);
 
 // Route to handle adding a new product
 router.post('/addProduct', upload.single('productImage'), productController.uploadProduct);
 
-// Route to display the update product form
-router.get('/updateProduct', productController.getUpdateProduct);
+
 
 // Route to handle updating an existing product
-router.post('/updateProduct/:id', productController.postUpdateProduct);
+router.get('/updateProduct/:id', productController.getProduct);
+router.get('/products',verifyadminToken,productController.getAllProducts)
+router.put('/updateProduct/:id', upload.single('productImage'),productController.updateProduct);
 
 // Route to handle deleting a product
-router.post('/deleteProduct/:id', productController.postDeleteProduct);
+router.delete('/deleteProduct/:id', productController.deleteProduct);
 
-// Route to fetch and display all products (optional)
-router.get('/', productController.getAllProducts);
 
 module.exports = router;

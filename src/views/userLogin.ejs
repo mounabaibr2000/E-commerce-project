@@ -37,6 +37,7 @@
                 if (response.ok) {
                     alert('Login successful!');
                     // Redirect or handle successful login
+                    window.history.replaceState(null, '','/');
                     window.location.href = data.redirectUrl;
                 } else {
                     alert(`Error: ${data.message}`);

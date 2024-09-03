@@ -40,6 +40,7 @@
 
                 const data = await response.json();
                 if (response.ok) {
+                    window.history.replaceState(null, '', '/');
                     window.location.href = data.redirectUrl;// Redirect to admin dashboard
                 } else {
                     document.getElementById('errorMessage').textContent = `Error: ${data.message}`;

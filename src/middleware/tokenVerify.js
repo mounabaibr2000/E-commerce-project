@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
 const secretKey = 'mysecretkey';
-exports. verifyToken=(req, res, next)=> {
+exports.verifyToken=(req, res, next)=> {
   const token = req.cookies.token;
+ 
   if (!token) return res.status(401).redirect('/userLogin');
 
   jwt.verify(token, secretKey, (err, user) => {

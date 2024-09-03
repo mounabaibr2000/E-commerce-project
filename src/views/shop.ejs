@@ -11,8 +11,9 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
+        rel="stylesheet">
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
@@ -38,11 +39,11 @@
         <ul class="offcanvas__widget">
             <li><span class="icon_search search-switch"></span></li>
             <li><a href="#"><span class="icon_heart_alt"></span>
-                <div class="tip">2</div>
-            </a></li>
+                    <div class="tip">2</div>
+                </a></li>
             <li><a href="#"><span class="icon_bag_alt"></span>
-                <div class="tip">2</div>
-            </a></li>
+                    <div class="tip">2</div>
+                </a></li>
         </ul>
         <div class="offcanvas__logo">
             <a href="./index.html"><img src="img/logo.png" alt=""></a>
@@ -93,11 +94,11 @@
                         <ul class="header__right__widget">
                             <li><span class="icon_search search-switch"></span></li>
                             <li><a href="#"><span class="icon_heart_alt"></span>
-                                <div class="tip">2</div>
-                            </a></li>
+                                    <div class="tip">2</div>
+                                </a></li>
                             <li><a href="#"><span class="icon_bag_alt"></span>
-                                <div class="tip">2</div>
-                            </a></li>
+                                    <div class="tip">2</div>
+                                </a></li>
                         </ul>
                     </div>
                 </div>
@@ -230,7 +231,7 @@
                             </div>
                             <div class="filter-range-wrap">
                                 <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                                data-min="33" data-max="99"></div>
+                                    data-min="33" data-max="99"></div>
                                 <div class="range-slider">
                                     <div class="price-input">
                                         <p>Price:</p>
@@ -339,216 +340,50 @@
                 </div>
                 <div class="col-lg-9 col-md-9">
                     <div class="row">
-                        <div class="col-lg-4 col-md-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="img/shop/shop-1.jpg">
-                                    <div class="label new">New</div>
-                                    <ul class="product__hover">
-                                        <li><a href="img/shop/shop-1.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6><a href="#">Furry hooded parka</a></h6>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
+                        <!-- shop.ejs -->
+                        <% products.forEach(product=> { %>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="product__item">
+                                    <!-- Use the product image URL from the database -->
+                                    <div class="product__item__pic set-bg" data-setbg="<%= product.images %>">
+                                        
+                                        <ul class="product__hover">
+                                            <li><a href="<%= product.images %>" class="image-popup"><span
+                                                        class="arrow_expand"></span></a></li>
+                                            <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                            <!-- Add "Add to Cart" button with data-product-id -->
+                                            <li>
+                                                <button class="icon_heart_alt add-to-cart"
+                                                    data-product-id="<%= product._id %>">
+                                                    <i class="fa-solid fa-cart-shopping"></i>
+                                                </button>
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <div class="product__price">$ 59.0</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="img/shop/shop-2.jpg">
-                                    <ul class="product__hover">
-                                        <li><a href="img/shop/shop-2.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6><a href="#">Flowy striped skirt</a></h6>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
+                                    <div class="product__item__text">
+                                        <h6><a href="#">
+                                                <%= product.productName %>
+                                            </a></h6>
+                                        <div class="rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="product__price">₹ <%= product.price %>
+                                        </div>
+                                        <!-- Debugging output for product ID -->
+                                    
+                                
                                     </div>
-                                    <div class="product__price">$ 49.0</div>
+
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="img/shop/shop-3.jpg">
-                                    <ul class="product__hover">
-                                        <li><a href="img/shop/shop-3.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6><a href="#">Croc-effect bag</a></h6>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <div class="product__price">$ 59.0</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="img/shop/shop-4.jpg">
-                                    <ul class="product__hover">
-                                        <li><a href="img/shop/shop-4.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6><a href="#">Dark wash Xavi jeans</a></h6>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <div class="product__price">$ 59.0</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="product__item sale">
-                                <div class="product__item__pic set-bg" data-setbg="img/shop/shop-5.jpg">
-                                    <div class="label">Sale</div>
-                                    <ul class="product__hover">
-                                        <li><a href="img/shop/shop-5.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6><a href="#">Ankle-cuff sandals</a></h6>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <div class="product__price">$ 49.0 <span>$ 59.0</span></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="img/shop/shop-6.jpg">
-                                    <ul class="product__hover">
-                                        <li><a href="img/shop/shop-6.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6><a href="#">Contrasting sunglasses</a></h6>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <div class="product__price">$ 59.0</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="img/shop/shop-7.jpg">
-                                    <ul class="product__hover">
-                                        <li><a href="img/shop/shop-7.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6><a href="#">Circular pendant earrings</a></h6>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <div class="product__price">$ 59.0</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="img/shop/shop-8.jpg">
-                                    <div class="label stockout stockblue">Out Of Stock</div>
-                                    <ul class="product__hover">
-                                        <li><a href="img/shop/shop-8.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6><a href="#">Cotton T-Shirt</a></h6>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <div class="product__price">$ 59.0</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="product__item sale">
-                                <div class="product__item__pic set-bg" data-setbg="img/shop/shop-9.jpg">
-                                    <div class="label">Sale</div>
-                                    <ul class="product__hover">
-                                        <li><a href="img/shop/shop-9.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6><a href="#">Water resistant zips backpack</a></h6>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <div class="product__price">$ 49.0 <span>$ 59.0</span></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 text-center">
-                            <div class="pagination__option">
-                                <a href="#">1</a>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <a href="#"><i class="fa fa-angle-right"></i></a>
-                            </div>
-                        </div>
+                            <% }); %>
+
+
+                             
                     </div>
                 </div>
             </div>
@@ -623,7 +458,7 @@
                             <a href="./index.html"><img src="img/logo.png" alt=""></a>
                         </div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                        cilisis.</p>
+                            cilisis.</p>
                         <div class="footer__payment">
                             <a href="#"><img src="img/payment/payment-1.png" alt=""></a>
                             <a href="#"><img src="img/payment/payment-2.png" alt=""></a>
@@ -676,7 +511,11 @@
                 <div class="col-lg-12">
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     <div class="footer__copyright__text">
-                        <p>Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+                        <p>Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This
+                            template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
+                                href="https://colorlib.com" target="_blank">Colorlib</a>
+                        </p>
                     </div>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </div>
@@ -707,6 +546,42 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/jquery.nicescroll.min.js"></script>
     <script src="js/main.js"></script>
+    <!-- shop.ejs -->
+
+
+   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', async (event) => {
+                // Retrieve productId from data attribute
+                const productId = event.target.getAttribute('data-product-id') || event.target.parentElement.getAttribute('data-product-id');
+
+                console.log('Product ID:', productId); // Check console for correct ID
+
+                try {
+                    const response = await fetch(`/add-to-cart/${productId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        credentials: 'same-origin'
+                    });
+
+                    if (response.ok) {
+                        alert('Product added to cart');
+                    } else {
+                        alert('Failed to add product to cart');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred');
+                }
+            });
+        });
+    });
+</script>
+
 </body>
 
 </html>

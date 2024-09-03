@@ -1,8 +1,6 @@
 require('dotenv').config();
 
-console.log('Cloud Name:', process.env.CLOUDINARY_CLOUD_NAME);
-console.log('API Key:', process.env.CLOUDINARY_API_KEY);
-console.log('API Secret:', process.env.CLOUDINARY_API_SECRET);
+
 const express = require("express");
 const cors = require('cors');
 
@@ -16,8 +14,9 @@ const Product = require("./models/productModel");
 const userRoutes = require("./routes/userRoutes");
 const adminRoutes=require("./routes/adminRoutes");
 const productRoutes = require('./routes/productRoutes');
+const cartRoutes=require("./routes/cartRoutes");
 const { notFound, errorHandler } = require("./middleware/errorHandling");
-
+// const cloudinary = require('../middleware/cloudinaryConfig');
 const app = express();
 app.use(cors());
 app.use(cookieParser());
@@ -40,10 +39,11 @@ app.use((req, res, next) => {
   next();
 });
 app.get('/favicon.ico', (req, res) => res.status(204));
-
+app.use('/',cartRoutes);
 app.use("/", userRoutes);
 app.use("/", adminRoutes);
 app.use('/admin', productRoutes);
+
 
 
 
